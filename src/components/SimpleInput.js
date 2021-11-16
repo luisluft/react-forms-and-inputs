@@ -28,6 +28,15 @@ const SimpleInput = (props) => {
     ? "form-control invalid"
     : "form-control";
 
+  const nameInputBlurHandler = (event) => {
+    setEnteredNameTouched(true);
+
+    if (enteredName.trim() == "") {
+      setEnteredNameIsValid(false);
+      return;
+    }
+  };
+
   useEffect(() => {
     if (nameInputIsInvalid) console.log("Name input is invalid");
   }, [nameInputIsInvalid]);
@@ -41,6 +50,7 @@ const SimpleInput = (props) => {
           type="text"
           id="name"
           value={enteredName}
+          onBlur={nameInputBlurHandler}
         />
         {nameInputIsInvalid && (
           <p className="error-text">Name can't be empty</p>
